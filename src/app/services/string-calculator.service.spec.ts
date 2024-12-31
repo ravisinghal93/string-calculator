@@ -17,6 +17,7 @@ describe('StringCalculatorService', () => {
   it('StringCalculatorService should return 0 for an empty string', () => {
     const service = new StringCalculatorService();
     expect(service.add("")).toEqual(0);
+    expect(service.add(" ")).toEqual(0);
   });
 
   it('should return the number itself for a single number', () => {
@@ -33,5 +34,13 @@ describe('StringCalculatorService', () => {
     expect(service.add("1,2,3")).toEqual(6);
     expect(service.add("10,20,30")).toEqual(60);
   });  
-  
+
+  it('should handle newlines as delimiters', () => {
+    expect(service.add("1\n2,3")).toEqual(6);
+  });
+
+  it('should support custom delimiters', () => {
+    expect(service.add("//;\n1;2")).toEqual(3);
+  }); 
+
 });
