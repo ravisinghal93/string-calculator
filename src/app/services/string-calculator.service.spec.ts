@@ -43,4 +43,12 @@ describe('StringCalculatorService', () => {
     expect(service.add("//;\n1;2")).toEqual(3);
   }); 
 
+  it('should throw an exception for negative numbers', () => {
+    expect(() => service.add("1,-2,3")).toThrowError("negative numbers not allowed: -2");
+  });
+
+  it('should show all negative numbers in the exception', () => {
+    expect(() => service.add("1,-2,-3")).toThrowError("negative numbers not allowed: -2, -3");
+  });
+
 });
